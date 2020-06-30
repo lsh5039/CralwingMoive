@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="com.lsh.movie.mybatis.UserDao"><!--이 xml의 고유한 이름을 설정MybatisMapper로  -->
+	
+	<insert id="doJoin">
+		INSERT INTO user(pk,id,pw,name, gender,phone, email) VALUES(#{pk},#{id},#{pw},#{name},#{gender},#{phone},#{email})
+	</insert>
+	
+	<select id="getList" resultType="com.lsh.movie.model.UserVO">
+		SELECT * FROM user 
+	</select>
+	
+	<delete id="doUserDel">
+		DELETE FROM user WHERE pk = ${pk}
+	</delete>
+	<select id="getMovieList" resultType="com.lsh.movie.crawling.MovieVO">
+		SELECT * FROM movie ORDER BY pk  limit #{start}, #{end}
+	</select>
+	<insert id="doInsertMovie">
+		INSERT   INTO movie(pk, img, title, num, num2) VALUES(#{pk}, #{img}, #{title}, #{num}, #{num2})
+		  ON DUPLICATE KEY UPDATE num= #{num}, num2 = #{num2}
+	</insert>
+	
+	<select id="getMovieBest" resultType="com.lsh.movie.crawling.MovieVO">
+		SELECT pk,img,title,num, cast(replace(num2, ',' ,'')as unsigned)as num2 from movie  order by num2 desc limit 5
+	</select>
+	
+	<select id="getPageNum" resultType="java.lang.Integer">
+		SELECT ROUND(count(*)/10 + 1) AS cnt FROM movie;
+	
+	</select>
+	
+</mapper>
