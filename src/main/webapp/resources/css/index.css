@@ -3,7 +3,7 @@
         .title{position: absolute; left: 50%; top: 50%; transform: translate(-50%,-50%); font-size: 30px;}
         .headUser{position: absolute; right: 0; top: 10px;}
         .headUser > a{margin: 10px;}
-        
+        .bannerTitle{font-size:48px; text-decoration:bold; text-align:center;margin-top:100px; margin-left:30px;}
         .movieWrap{width: 1200px; margin: 0 auto;}
         .subTitle{text-align: center; font-size: 36px; margin:100px 0;}
         .bannerWrap{position: relative; width: 1200px; margin: 0 auto;}
@@ -42,7 +42,7 @@
         .movieItems th{margin:0 20px;}
         .line{width:1000px; height:2px; background-color:#ddd; }
         
-        .movieItems{border-bottom: 150px solid #fff;}
+        /* .movieItems{border-bottom: 150px solid #fff;} */
         
         
 	    .fa-arrow-right:before{font-size:16px;}
@@ -50,5 +50,37 @@
 		.movePageWrap{font-size:20px;width:1000px; margin:0 auto;}
 		.movePage{font-size:20px; text-align:center; margin:0 auto;}
 		.movePage span{margin:0 10px;}
-		.pageNum{cursor:pointer; padding:10px; font-weight: lighter;}
+		
 		.pageNum.active{color:red; font-weight:bold;}
+		
+		/* .movieItems{border:1px solid #333;} */
+		.itemTitle{vertical-align:middle}
+		.itemDummy{width:1200px; height:2px; background-color:#333;}
+		tr{border:1px solid #ddd;}
+		
+		
+		
+		
+		
+		.itemBoxTop{overflow:hidden; margin-bottom:20px;}
+		.itemBoxWrap, .itemBoxDesc{width:1200px; margin:0 auto;}
+		.itemBoxWrap  p {float:left; text-align:center;}
+		.itemBoxWrap  p:nth-child(1){width:200px;}
+		.itemBoxWrap  p:nth-child(2){width:200px;}
+		.itemBoxWrap  p:nth-child(3){width:200px;}
+		.itemBoxWrap  p:nth-child(4){width:200px;}
+		.itemBoxWrap  p:nth-child(5){width:400px;}
+		
+		.itemBoxDesc{height:141px; border:1px solid #ddd;margin-bottom:50px;box-sizing: border-box; overflow:hidden;}
+		.itemBoxDesc  p {float:left; text-align:center; height:100%;}
+		.itemBoxDesc  p:nth-child(1){width:200px;line-height:141px; font-size:20px;  overflow:hidden; text-overflow:ellipsis; white-space:nowrap;}
+		.itemBoxDesc  p:nth-child(2){width:200px;}
+		.itemBoxDesc  p:nth-child(3){width:200px;line-height:141px;}
+		.itemBoxDesc  p:nth-child(4){width:200px;line-height:141px;}
+		.itemBoxDesc  p:nth-child(5){width:398px; position:relative;}
+		
+		.commentBtn{position:absolute; bottom:20px;}
+		.detailBtn{position:absolute; bottom:20px;left:10px;}
+		
+		.movePageLeft, .movePageRight{padding:10px;}
+		.pageNum{cursor:pointer; padding:10px; font-weight: lighter; width:50px;}

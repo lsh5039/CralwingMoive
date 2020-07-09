@@ -55,5 +55,7 @@ public class UserService {
 	public int updPk(int pk) {
 		return userDao.updPK(pk);
 	}
-	
+	public int getPageMaxNum() {
+		return userDao.getPageMaxNum();
+	}
 }

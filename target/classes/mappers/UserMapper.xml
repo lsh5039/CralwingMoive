@@ -37,5 +37,7 @@
 		SELECT ROUND(count(*)/10 + 1) AS cnt FROM movie;
 	
 	</select>
-	
+	<select id="getPageMaxNum" resultType="java.lang.Integer">
+		SELECT (COUNT(pk)/10)+1  FROM movie;
+	</select>
 </mapper>

@@ -17,4 +17,5 @@ public interface UserDao {
 	public int getPageNum();
 	public int getMaxPk();// ON DUPLICATE KEY UPDATE로 자동증가해버린 pk를 바로 잡기위해 현재 db의 최대pk값 리턴
 	public int updPK(@Param("pk") int pk);//getMaxPk()로 리턴된 값으로 alter table로 pk바로잡기
+	public int getPageMaxNum();
 }

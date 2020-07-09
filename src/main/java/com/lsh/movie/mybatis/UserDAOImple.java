@@ -87,6 +87,14 @@ public class UserDAOImple implements UserDao{
 
 
 
+	@Override
+	public int getPageMaxNum() {
+	
+		return sqlSession.selectOne(NAME_SPACE+".getPageMaxNum");
+	}
+
+
+
 
 
 }

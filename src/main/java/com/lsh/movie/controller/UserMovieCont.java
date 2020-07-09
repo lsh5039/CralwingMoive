@@ -133,6 +133,7 @@ public class UserMovieCont {
 			  list.add(vo);
 			}
 			 
+			model.addAttribute("pageMaxNum",userService.getPageMaxNum());//최대 몇페이지인가
 			
 			model.addAttribute("movieList",userService.getMovieList(start,end));
 			model.addAttribute("movieBest5",userService.getMovieBest());

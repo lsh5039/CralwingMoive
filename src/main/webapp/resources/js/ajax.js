@@ -8,34 +8,39 @@ $(function(){
 		
 		$(".pageNum").eq(current).trigger('click');
 	})
-	$(".movePageRight").click(function(){
-		var current = $(".pageNum.active").index();
-		/*if(current>4){
-			return
-		}*/
-		
-		if(current>4){
+	$('.movePageRight').click(function(){//오른쪽 화살표클릭시
+		var current = $('.pageNum.active').index();
+		if($('.pageNum.active').html() == $('#hid').val()){//최대 페이지시
+			alert('마지막 페이지입니다.')
+			return;
+		}else if(current > 4){
 			var pageMax = $(".pageNum.active").html();
 			
 			
 			for(var i=0;i<5;i++){
 				var num = Number($(".pageNum").eq(i).html());	
 				num =num+5;
-				//$(".pageNum").eq(i).remove();
+				
 				$(".pageNum").eq(i).html(num);
 				console.log("내가넣은 num : "+num)
 			}
 			$(".pageNum").removeClass("active");
 			$(".pageNum").eq(0).addClass("active")
 			$(".pageNum").eq(0).trigger("click");
+		
+    	
+   
+		}else{
+			$('.pageNum').removeClass('active');
+			$('.pageNum').eq(current).addClass('active');
+			$('.pageNum').eq(current).trigger('click');
 		}
-		$(".pageNum").eq(current).trigger('click');
-		
-		
 	})
 	
 	$(".pageNum").eq(0).addClass("active");
-	$('.pageNum').on('click', function(){
+	
+	
+	$('.pageNum').on('click', function(){//페이지 이동시 ajax
 	var pageNum = $(this).html();
 		pageNum--;
 	var idx	=$(this).index();
@@ -48,22 +53,22 @@ $(function(){
 			contentType: "application/x-www-form-urlencoded; charset=UTF-8",
 			success :function(data){
 				
-				$(".movieItems").remove();
+				$(".itemBoxDesc").remove();
 				for(var i=0;i<data.movieList.length;i++){
-					var ajaxData = '<tr class="movieItems" >'
-										+'<td>'+data.movieList[i].title+'</td>'
-										+'<td>+<img src='+data.movieList[i].img+'></td>'
-										+'<td>'+data.movieList[i].num+'</td>'
-										+'<td>'+data.movieList[i].num2+'</td>'
-										+'<td><button type="button" class="btn btn-dark" onclick=goDetail('+data.movieList[i].pk+')>자세히</button></td>'
-										+'<td><button type="button" class="btn btn-dark">리뷰&댓글</button></td>'
-									+'</tr>';
-						$(".tables").append(ajaxData);			
+					var ajaxData = '<div class="itemBoxDesc">'
+										+'<p class="descTitle">'+data.movieList[i].title+'</p>'
+										+'<p class="descThum"><img src="'+data.movieList[i].img+'"></p>'
+										+'<p class="descNum1">'+data.movieList[i].num+'</p>'
+										+'<p class="descNum2">'+data.movieList[i].num2+'</p>'
+										+'<p class="descBtn">'
+										+'<td><button type="button" class="btn btn-dark detailBtn" onclick=goDetail('+data.movieList[i].pk+')>자세히</button></td>'
+										+'<td><button type="button" class="btn btn-dark commentBtn">리뷰&댓글</button></td>'
+										+'</p>'
+									+'</div>';
+						$(".itemBoxTop").append(ajaxData);	
+					
 						
 				}
-				
-				
-				
 				
 			},
 			error:function(data){
