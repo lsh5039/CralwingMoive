@@ -19,18 +19,18 @@
 		SELECT * FROM movie ORDER BY pk  limit #{start}, #{end}
 	</select>
 	<insert id="doInsertMovie">
-		INSERT   INTO movie(pk, img, title, num, num2) VALUES(#{pk}, #{img}, #{title}, #{num}, #{num2})
-		  ON DUPLICATE KEY UPDATE num= #{num}, num2 = #{num2}
+		INSERT   INTO movie(pk, img, title, num, num2,code) VALUES(#{pk}, #{img}, #{title}, #{num}, #{num2},#{code})
+		  ON DUPLICATE KEY UPDATE num= #{num}, num2 = #{num2}, code = #{code}
 	</insert>
 	<select id="getMaxPk" resultType="java.lang.Integer">
 		SELECT MAX(pk+1)as pk FROM movie
 	</select>
 	<update id="updPK" parameterType="Integer">
-		ALTER TABLE movie auto_increment = ${pk}
+		ALTER TABLE movie auto_increment = #{pk}
 	</update>
 	
 	<select id="getMovieBest" resultType="com.lsh.movie.crawling.MovieVO">
-		SELECT pk,img,title,num, cast(replace(num2, ',' ,'')as unsigned)as num2 from movie  order by num2 desc limit 5
+		SELECT pk,img,title,num,code, cast(replace(num2, ',' ,'')as unsigned)as num2 from movie  order by num2 desc limit 5
 	</select>
 	
 	<select id="getPageNum" resultType="java.lang.Integer">
@@ -39,5 +39,9 @@
 	</select>
 	<select id="getPageMaxNum" resultType="java.lang.Integer">
 		SELECT (COUNT(pk)/10)+1  FROM movie;
+	</select>
+
+	<select id="getBestLargeImg" resultType="String">
+		SELECT code FROM movie WHERE pk = #{pk}
 	</select>
 </mapper>

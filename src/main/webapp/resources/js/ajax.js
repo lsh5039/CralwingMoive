@@ -60,15 +60,20 @@ $(function(){
 										+'<p class="descThum"><img src="'+data.movieList[i].img+'"></p>'
 										+'<p class="descNum1">'+data.movieList[i].num+'</p>'
 										+'<p class="descNum2">'+data.movieList[i].num2+'</p>'
-										+'<p class="descBtn">'
-										+'<td><button type="button" class="btn btn-dark detailBtn" onclick=goDetail('+data.movieList[i].pk+')>자세히</button></td>'
-										+'<td><button type="button" class="btn btn-dark commentBtn">리뷰&댓글</button></td>'
-										+'</p>'
+										+'<div class="descBtn">'
+										+	'<button type="button" class="btn btn-dark" onclick="goDetail('+data.movieList[i].pk+')">자세히</button>'
+							            +	'<button type="button" class="btn btn-dark" onclick="goComment('+data.movieList[i].pk+')">리뷰&댓글</button>'							           
+										+'</div>'
 									+'</div>';
-						$(".itemBoxTop").append(ajaxData);	
-					
-						
+						$(".itemBoxTop").append(ajaxData);
 				}
+				$('.descBtn > .btn').style({
+					margin:'10px'
+				});
+				
+				
+				
+				
 				
 			},
 			error:function(data){

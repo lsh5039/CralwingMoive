@@ -6,10 +6,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.ServletRequest;
+
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Required;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -21,6 +24,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.fasterxml.jackson.databind.jsonFormatVisitors.JsonObjectFormatVisitor;
 import com.lsh.movie.crawling.MovieVO;
 import com.lsh.movie.model.UserVO;
+import com.lsh.movie.mybatis.MovieService;
 import com.lsh.movie.mybatis.UserDao;
 import com.lsh.movie.mybatis.UserService;
 
@@ -30,6 +34,7 @@ import net.sf.json.JSONObject;
 public class UserMovieCont {
 	@Autowired
 	UserService userService;
+	//MovieService movieService;
 	
 	@RequestMapping(value="join.do", method = RequestMethod.GET)
 	public String goJoin(Model model) {
@@ -89,8 +94,8 @@ public class UserMovieCont {
 		Elements img = null;//이미지
 		Elements num = null;//평점
 		Elements num2 = null;//투표자 수
-		
-		
+		Elements code = null;//영화마다의 개별 코드
+		Elements tit = null;
 	
 		List<MovieVO> list = new ArrayList<MovieVO>();//크롤링 한 정보를 담을 리스트
 		
@@ -105,13 +110,14 @@ public class UserMovieCont {
 			eleStar = doc.select(".star_t1");
 			num = eleStar.select("a").select(".num");
 			num2 = eleStar.select(".num2");
-			
-
 			img = ele.select("img");//
-			System.out.println("img:"+img);
+			tit = doc.select(".tit");
+			code = tit.select("a");//영화의 고유코유
 			
-
-			
+			System.out.println("code의 크기 : "+code.size());
+			System.out.println("ele의크기 : "+ele.size());
+		
+			 String strCode = null;
 			
 			for(int i=0;i<ele.size();i++) { 
 			  MovieVO vo = new MovieVO();
@@ -119,17 +125,19 @@ public class UserMovieCont {
 			  vo.setTitle(img.get(i).attr("alt"));
 			  vo.setNum(num.get(i).html());
 			  vo.setNum2(num2.get(i).select("em").html());
+			  strCode = code.get(i).attr("href").split("code=")[1];  
+			  vo.setCode(strCode);
+			  
 			  
 			  userService.doInsertMoive(vo);
 			  
 			  
-				/*
-				 * System.out.println("src : "+vo.getImg());
-				 * System.out.println("alt : "+vo.getTitle());
-				 * System.out.println("num : "+vo.getNum());
-				 * System.out.println("num2 : "+vo.getNum2());
-				 */
-			
+				
+				  System.out.println("src : "+vo.getImg());
+				  System.out.println("alt : "+vo.getTitle());
+				  System.out.println("num : "+vo.getNum());
+				  System.out.println("num2 : "+vo.getNum2());
+				  System.out.println("code : "+vo.getCode());
 			  list.add(vo);
 			}
 			 
@@ -137,6 +145,9 @@ public class UserMovieCont {
 			
 			model.addAttribute("movieList",userService.getMovieList(start,end));
 			model.addAttribute("movieBest5",userService.getMovieBest());
+			
+			
+			
 			model.addAttribute("pageMax",userService.getPageNum());
 			int maxPk = userService.getMaxPk();
 			userService.updPk(maxPk);
@@ -145,6 +156,45 @@ public class UserMovieCont {
 			
 			e.printStackTrace();
 		}
+		List<MovieVO> bestMovie = userService.getMovieBest();// 베스트5 리스트 초기화
+		//
+		for(int i=0;i<bestMovie.size();i++) {
+			System.out.println("제목은 : "+bestMovie.get(i).getCode());
+		}
+			//
+		String[] bestImgCodes;
+		bestImgCodes = new String[bestMovie.size()];
+		
+		Elements largeImg = null;
+		String strLargeImg = null;
+		
+		List<String> bestImg = new ArrayList<String>();
+		for(int i=0;i<bestMovie.size();i++) {
+			bestImgCodes[i] = userService.getBestLargeImg(bestMovie.get(i).getPk());
+			System.out.println("코드는 : "+bestImgCodes[i]);
+			url = "https://movie.naver.com/movie/bi/mi/photoViewPopup.nhn?movieCode="+bestImgCodes[i];
+			System.out.println("주소값은 : "+url);
+			try {
+				doc = Jsoup.connect(url).get();
+				largeImg = doc.select("img");
+				strLargeImg = largeImg.attr("src");
+				System.out.println("strLargeImg : "+strLargeImg);
+				bestImg.add(strLargeImg);
+				
+				
+			} catch (IOException e) {
+
+				e.printStackTrace();
+			}
+			for(int j=0;j<bestImg.size();j++) {
+				System.out.println("리스트배너 : "+bestImg.get(j));
+			}
+			model.addAttribute("mainImg",bestImg);
+		}
+
+		
+		
+		
 		return"/user/index";
 	}
 	
@@ -178,6 +228,8 @@ public class UserMovieCont {
 		return returnJson;
 	}
 	
+	
+	 
 		
 	
 }

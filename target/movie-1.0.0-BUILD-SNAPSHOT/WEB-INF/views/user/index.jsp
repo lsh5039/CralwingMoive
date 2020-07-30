@@ -36,6 +36,7 @@
     </header>
        
     <aside class="bannerWrap">
+    	<h2 class="bannerTitle">TOP FIVE</h2>
             <div class="banner">
             <c:forEach items="${movieBest5 }" var="best">
             	<div class="bestWrap active">
@@ -84,9 +85,9 @@
     <h2 class="subTitle">현재 상영 영화</h2>
 
 	<main>
-		<div class="mainWrap">
-			<table border="1">
-				<tr>
+	<%-- 	<div class="mainWrap">
+			<table border="1" class="tables">
+				<tr class="tableTh">
 					<th>제목</th>
 					<th>영화</th>
 					<th>평점</th>
@@ -95,7 +96,7 @@
 				</tr>
 				<c:forEach items="${movieList}" var="vo">
 					<tr class="movieItems" >
-						<td>${vo.title }</td>
+						<td class="itemTitle">${vo.title }</td>
 						<td><img src="${vo.img }"></td>
 						<td>${vo.num }</td>
 						<td>${vo.num2 }</td>
@@ -105,41 +106,61 @@
 					
 				</c:forEach>
 			</table>
-
-
+		</div> --%>
+		
+		
+		<div class="itemBoxWrap">
+			<div class="itemBoxTop">
+				<p>제목</p>
+				<p>썸네일</p>
+				<p>평점</p>
+				<p>투표자 수</p>
+				<p>여러분의 의견을 공유해주세요~!</p>
+			</div>
+		
 		</div>
+		<c:forEach items="${movieList}" var="vo">
+		<div class="itemBoxDesc">
+		
+	
+			<p class="descTitle">${vo.title }</p>
+			<p class="descThum"><img src="${vo.img }"></p>
+			<p class="descNum1">${vo.num }</p>
+			<p class="descNum2">${vo.num2 }</p>
+			<div class="descBtn">
 
+				<button type="button" class="btn btn-dark" onclick="goDetail(${vo.pk})">자세히</button>
+	            <button type="button" class="btn btn-dark" onclick="goComment(${vo.pk})">리뷰&댓글</button>
+	           
+			</div>
+		</div>
+		</c:forEach>
 
 	</main>
-	<input type="hidden" value="${pageMax }">
+	<input type="text" value="${pageMaxNum }" id="hid">
 	<div class="movePageWrap">
 	<div class="movePage">
 		<span class="movePageLeft"><i class="fas fa-arrow-left"></i></span>	
 		<c:forEach var="i" begin="1" end="5" step="1">
-			<span class="pageNum">${i }</span>
+			<span class="pageNum" style="width:50px">${i }</span>
 		</c:forEach>
-		<span class="movePageRight"><i class="fas fa-arrow-right"></i></span>
+		<span class="movePageRight" ><i class="fas fa-arrow-right"></i></span>
 	</div>
 	</div>
 	
-	<script>
-/* 	$(function(){
-		$(document).on('click', '.pageNum', function(){
-		var pageNum = $(this).html();
-			$.ajax({
-				type:"POST",
-				url:"/movie/board.do?start="+(pageNum-1)*10+"&end="+(pageNum)*10,
-				dataType:"JSON",
-				succes:function(data){
-					console.log(data);			
-				}
-			})
-		})
-	}) */
-	</script>
-
-
-
+	
+   <script>
+   	//영화 자세히, 리뷰&댓글 버튼 클릭시 제어///
+    function goDetail(pk){
+    	location.href="/movie/goDetail.do?pk="+pk;
+    }
+    
+    
+    
+    function goComment(pk){
+    	location.href="/movie/goComment.do?pk="+pk;
+    }
+    </script>
 
 </body>
 </html>

@@ -42,7 +42,9 @@ public class UserService {
 		return userDao.getMovieList(start, end);
 	}
 	public List<MovieVO> getMovieBest(){
-		List<MovieVO> list = new ArrayList<MovieVO>();
+		//String code = userDao.
+		//List<MovieVO> list = new ArrayList<MovieVO>();
+		
 		return userDao.getMovieBest();
 	}
 	
@@ -57,5 +59,9 @@ public class UserService {
 	}
 	public int getPageMaxNum() {
 		return userDao.getPageMaxNum();
+	}
+	
+	public String getBestLargeImg(int pk){
+		return userDao.getBestLargeImg(pk);
 	}
 }

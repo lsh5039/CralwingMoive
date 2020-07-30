@@ -1,12 +1,10 @@
 package com.lsh.movie.mybatis;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.lsh.movie.crawling.MovieVO;
 import com.lsh.movie.model.UserVO;
@@ -15,6 +13,8 @@ import com.lsh.movie.model.UserVO;
 public class UserDAOImple implements UserDao{
 	@Autowired
 	private SqlSession sqlSession;
+	
+	@Autowired
 	private static final String NAME_SPACE="com.lsh.movie.mybatis.UserDao";
 	
 	
@@ -93,6 +93,16 @@ public class UserDAOImple implements UserDao{
 		return sqlSession.selectOne(NAME_SPACE+".getPageMaxNum");
 	}
 
+
+
+	@Override
+	public String getBestLargeImg(int pk) {
+		return sqlSession.selectOne(NAME_SPACE+".getBestLargeImg");
+	}
+
+
+
+	
 
 
 

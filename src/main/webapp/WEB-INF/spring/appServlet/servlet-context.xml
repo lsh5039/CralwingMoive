@@ -24,6 +24,9 @@
 	</beans:bean>
 	
 	<context:component-scan base-package="com.lsh.movie" />
+	<context:component-scan base-package="com.lsh.movie.controller" />
+	
+	
 	<tx:annotation-driven proxy-target-class="true"/>
 	
 	<beans:bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
@@ -38,9 +41,6 @@
 	<beans:bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<beans:property name="dataSource" ref="dataSource" /><!--name은  org.mybatis.spring.SqlSessionFactoryBean안에 객체, ref는 위에 내가 만든 db연결 -->
 		<beans:property name="mapperLocations" value="classpath:mappers/*Mapper.xml"></beans:property>
-		
-        
-      
 	</beans:bean>
 	
 	

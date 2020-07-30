@@ -6,10 +6,17 @@ public class MovieVO {
 	private String title;
 	private String num;//평점
 	private String num2;//평점 투표자 수
+	private String code;//영화마다의 고유코드
 
 	
 	
 	
+	public String getCode() {
+		return code;
+	}
+	public void setCode(String code) {
+		this.code = code;
+	}
 	public int getPk() {
 		return pk;
 	}

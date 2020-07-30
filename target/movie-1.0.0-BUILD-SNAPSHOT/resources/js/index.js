@@ -3,7 +3,7 @@ $(function(){
 	$(".bestWrap").eq(0).addClass("active");
 	
     
-    $(".fa-arrow-left").click(function(){
+    $(".arrowLeft .fa-arrow-left").click(function(){
         var idx = $(".indicator.active").index();
         var bannerIdx = $(".bestWrap.active").index();
         if(idx==0){
@@ -15,7 +15,7 @@ $(function(){
         $(".bestWrap").eq(idx-1).addClass("active");
     })
     
-    $(".fa-arrow-right").click(function(){
+    $(".arrowRight .fa-arrow-right").click(function(){
         var idx = $(".indicator.active").index();
         var bannerIdx = $(".bestWrap.active").index();
         if(idx==4){
@@ -34,9 +34,22 @@ $(function(){
         $(this).addClass("active");
         $(".bestWrap").removeClass("active");
         $(".bestWrap").eq(index).addClass("active");
-        
-        
-        
+
     })
+    
+    
+    $('.pageNum').click(function(){//직접 숫자 클릭한 경우
+    	var idx = $(this).index();
+    	
+    	$('.pageNum').removeClass('active');
+    	$('.pageNum').eq(--idx).addClass('active');
+    })
+    
+    
+ 
+    
+    
+	
+    
     
 })

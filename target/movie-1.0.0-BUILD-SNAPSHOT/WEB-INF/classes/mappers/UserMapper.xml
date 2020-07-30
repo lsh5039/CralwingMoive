@@ -22,6 +22,12 @@
 		INSERT   INTO movie(pk, img, title, num, num2) VALUES(#{pk}, #{img}, #{title}, #{num}, #{num2})
 		  ON DUPLICATE KEY UPDATE num= #{num}, num2 = #{num2}
 	</insert>
+	<select id="getMaxPk" resultType="java.lang.Integer">
+		SELECT MAX(pk+1)as pk FROM movie
+	</select>
+	<update id="updPK" parameterType="Integer">
+		ALTER TABLE movie auto_increment = ${pk}
+	</update>
 	
 	<select id="getMovieBest" resultType="com.lsh.movie.crawling.MovieVO">
 		SELECT pk,img,title,num, cast(replace(num2, ',' ,'')as unsigned)as num2 from movie  order by num2 desc limit 5
@@ -31,5 +37,9 @@
 		SELECT ROUND(count(*)/10 + 1) AS cnt FROM movie;
 	
 	</select>
+	<select id="getPageMaxNum" resultType="java.lang.Integer">
+		SELECT (COUNT(pk)/10)+1  FROM movie;
+	</select>
+
 	
 </mapper>

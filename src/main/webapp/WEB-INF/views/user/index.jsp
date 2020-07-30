@@ -35,14 +35,37 @@
         
     </header>
        
-    <aside class="bannerWrap">
+    <aside>
     	<h2 class="bannerTitle">TOP FIVE</h2>
-            <div class="banner">
-            <c:forEach items="${movieBest5 }" var="best">
+            <div class="bannerWrap">
+            
+            
+            
+            <c:forEach items="${movieBest5 }" var="best"  varStatus="idx">
+          	
             	<div class="bestWrap active">
             		<div class="bestItemWrap">
-            		
-            			<img src="${best.img }" class="bannerItems active" alt="${best.title }">
+            	
+            			<c:choose>
+            				<c:when test="${idx.index == 0 }">
+            					<img src="${mainImg[0]}" class="bannerItems active" alt="${best.title }">	
+            				</c:when>
+            				<c:when test="${idx.index == 1 }">
+            					<img src="${mainImg[1]}" class="bannerItems active" alt="${best.title }">	
+            				</c:when>
+            				<c:when test="${idx.index == 2 }">
+            					<img src="${mainImg[2]}" class="bannerItems active" alt="${best.title }">	
+            				</c:when>
+            				<c:when test="${idx.index == 3 }">
+            					<img src="${mainImg[3]}" class="bannerItems active" alt="${best.title }">	
+            				</c:when>
+            				<c:when test="${idx.index == 4 }">
+            					<img src="${mainImg[4]}" class="bannerItems active" alt="${best.title }">	
+            				</c:when>
+            			
+            			</c:choose>
+            			
+            			
 	            		
 	            		
 	            		<table class="bestItems">
@@ -127,11 +150,12 @@
 			<p class="descThum"><img src="${vo.img }"></p>
 			<p class="descNum1">${vo.num }</p>
 			<p class="descNum2">${vo.num2 }</p>
-			<p class="descBtn">
-				<button type="button" class="btn btn-dark detailBtn">자세히</button>
-	            <button type="button" class="btn btn-dark commentBtn">리뷰&댓글</button>
+			<div class="descBtn">
+
+				<button type="button" class="btn btn-dark" onclick="goDetail(${vo.pk})">자세히</button>
+	            <button type="button" class="btn btn-dark" onclick="goComment(${vo.pk})">리뷰&댓글</button>
 	           
-			</p>
+			</div>
 		</div>
 		</c:forEach>
 
@@ -139,17 +163,27 @@
 	<input type="text" value="${pageMaxNum }" id="hid">
 	<div class="movePageWrap">
 	<div class="movePage">
-		<span class="movePageLeft"><i class="fas fa-arrow-left"></i></span>	
+		<span class="movePageLeft"><i class="fas fa-arrow-left" id="pageBtn"></i></span>	
 		<c:forEach var="i" begin="1" end="5" step="1">
 			<span class="pageNum" style="width:50px">${i }</span>
 		</c:forEach>
-		<span class="movePageRight" ><i class="fas fa-arrow-right"></i></span>
+		<span class="movePageRight" ><i class="fas fa-arrow-right" id="pageBtn"></i></span>
 	</div>
 	</div>
 	
 	
-
-
+   <script>
+   	//영화 자세히, 리뷰&댓글 버튼 클릭시 제어///
+    function goDetail(pk){
+    	location.href="/movie/goDetail.do?pk="+pk;
+    }
+    
+    
+    
+    function goComment(pk){
+    	location.href="/movie/goComment.do?pk="+pk;
+    }
+    </script>
 
 </body>
 </html>
