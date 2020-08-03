@@ -4,8 +4,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" href="/css/bootstrap.css"/>
+
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+
   <style>
         /* .help-block 을 일단 보이지 않게 설정 */
         #myForm .help-block{
@@ -28,11 +30,12 @@
   
     <form:form action ="/join.do" method="post" id="myForm" commandName="vo" onsubmit="return chk()">
         <div class="form-group has-feedback">
-            <label class="control-label" for="id">아이디</label>
+            <label class="control-label" for="id" >아이디</label>
             <!-- <input class="form-control" type="text" name="id" id="id"/> -->
             <form:input path="id" class="form-control"/>
             <span id="overlapErr" class="help-block">사용할 수 없는 아이디 입니다.</span>
             <span class="glyphicon glyphicon-ok form-control-feedback"></span>
+            <button class="btn btn-primary" type="button" id="chkId">중복확인</button>
         </div>
         <div class="form-group has-feedback">
             <label class="control-label" for="pw">비밀번호</label>
@@ -43,6 +46,11 @@
             <label class="control-label" for="rePwd">비밀번호 재확인<p id="pwMsg"></p></label>
             <input class="form-control" type="password" name="rePwd" id="rePwd" onkeyup="pwChk()"/>
             <span id="rePwdErr" class="help-block">비밀번호와 일치하지 않습니다. 다시 입력해 주세요.</span>
+            <span class="glyphicon glyphicon-ok form-control-feedback"></span>
+        </div>
+        <div class="form-group has-feedback">
+            <label class="control-label" for="nick">닉네임</label>
+            <input class="form-control" type="text" name="nick" id="nick" />
             <span class="glyphicon glyphicon-ok form-control-feedback"></span>
         </div>
         <div class="form-group has-feedback">
@@ -68,20 +76,27 @@
 			<form:radiobutton path="gender" value="F" label="여성"/>
 		</div>
         <button class="btn btn-primary" type="submit">가입</button>
+        
         </form:form>
         <p id="msg"></p>
 	</div>
 
 <script>
 
-
+	$(function(){
+		var $id = $("#id");
+		var test = false;
+		$id.focus();
+	})
+	
+		
 
 	function chk(){
 		
 		var emailReg=/^[-A-Za-z0-9_]+[-A-Za-z0-9_.]*[@]{1}[-A-Za-z0-9_]+[-A-Za-z0-9_.]*[.]{1}[A-Za-z]{1,5}$/g;
 		
 		
-		alert(pwMsgVal);
+		
 		var pheonReg = /^[0-9]*$/;
 		
 		if(myForm.id.value==""){
@@ -122,6 +137,29 @@
 				pwMsg.style.color="blue"
 		}
 	}
+	
+	
+	//id 중복테스트
+	$("#chkId").click(function(){
+		var id = $('#id').val();
+		
+		 $.ajax({
+			method:"POST",
+			dataType:"json",
+			url:"/user/chkid?id="+id,
+			contentType: "application/x-www-form-urlencoded; charset=UTF-8",
+			success :function(data){
+				alert('사용가능한 아이디입니다.')
+				$("#id").attr("readonly",true);
+				$("#id").css("color","blue")
+			},
+			error:function(data){
+				console.log('실패')
+			}
+		}) 
+		
+	});
+	
 
 </script>
 

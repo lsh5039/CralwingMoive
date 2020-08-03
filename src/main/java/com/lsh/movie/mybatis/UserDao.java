@@ -9,6 +9,7 @@ import com.lsh.movie.model.UserVO;
 
 public interface UserDao {
 	public int doJoin(UserVO param);
+	public UserVO chkId(String id);
 	public List<UserVO> getList();
 	public int doUserDel(UserVO param);
 	public List<MovieVO> getMovieList(@Param("start") int start,@Param("end") int end);

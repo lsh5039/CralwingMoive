@@ -11,12 +11,6 @@ import lombok.ToString;
 */
 public class UserVO {
 	
-	public int getPk() {
-		return pk;
-	}
-	public void setPk(int pk) {
-		this.pk = pk;
-	}
 	private int pk;
 	private String name;
 	private String phone;
@@ -24,6 +18,24 @@ public class UserVO {
 	private String id;
 	private String pw;
 	private String email;
+	private String nick;
+	
+	
+	
+	
+	
+	public String getNick() {
+		return nick;
+	}
+	public void setNick(String nick) {
+		this.nick = nick;
+	}
+	public int getPk() {
+		return pk;
+	}
+	public void setPk(int pk) {
+		this.pk = pk;
+	}
 	public String getName() {
 		return name;
 	}

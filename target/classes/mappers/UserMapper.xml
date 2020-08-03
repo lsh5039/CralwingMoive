@@ -5,7 +5,7 @@
   <mapper namespace="com.lsh.movie.mybatis.UserDao"><!--이 xml의 고유한 이름을 설정MybatisMapper로  -->
 	
 	<insert id="doJoin">
-		INSERT INTO user(pk,id,pw,name, gender,phone, email) VALUES(#{pk},#{id},#{pw},#{name},#{gender},#{phone},#{email})
+		INSERT INTO user(pk,id,pw,name, gender,phone, email,nick) VALUES(#{pk},#{id},#{pw},#{name},#{gender},#{phone},#{email},#{nick})
 	</insert>
 	
 	<select id="getList" resultType="com.lsh.movie.model.UserVO">
@@ -43,5 +43,10 @@
 
 	<select id="getBestLargeImg" resultType="String">
 		SELECT code FROM movie WHERE pk = #{pk}
+	</select>
+	
+	<select id="chkId" resultType="com.lsh.movie.model.UserVO">
+		SELECT * FROM user WHERE id = #{id};
+	
 	</select>
 </mapper>

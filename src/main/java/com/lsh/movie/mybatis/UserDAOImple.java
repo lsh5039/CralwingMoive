@@ -102,6 +102,14 @@ public class UserDAOImple implements UserDao{
 
 
 
+	@Override
+	public UserVO chkId(String id) {
+		
+		return sqlSession.selectOne(NAME_SPACE+".chkId");
+	}
+
+
+
 	
 
 

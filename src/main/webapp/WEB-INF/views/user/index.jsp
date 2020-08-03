@@ -15,25 +15,35 @@
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css">
 <link rel="stylesheet" href="/resources/css/index.css">
-
+<link href="https://fonts.googleapis.com/css2?family=Lemonada:wght@700&family=Passion+One:wght@700;900&display=swap" rel="stylesheet">
+<!--font-family: 'Lemonada', cursive;  -->
 	
 </head>
 <body>
 
  <header>
        <div class="head">
-        <h1 class="title">영화 리뷰 사이트</h1>
+        <h1 class="title">Movie Comment</h1>
         <div class="headUser">
             <a href="/login.do">로그인</a>
             <a href="/join.do">회원가입</a>
         </div>
         <div class="logo">
-            
-            <a href="#"><img src="https://placehold.it/100x100" alt="로고"></a>
+            <a href="#"><img src="/resources/img/logo.jpg" alt="로고" id="logoImg"></a>
         </div>
        </div>
-        
-    </header>
+       
+       <div class="myInfoWrap">
+            	<div class="profile">
+            		<img src="/resources/img/noProfile.jpg">
+            	</div>
+            	<p class="nickName">lorem</p>
+            	<div class="infoBox">
+            		<button class="btn btn-primary">내 정보</button>
+            		<button class="btn btn-primary">로그아웃</button>
+            	</div>
+       </div> 
+ </header>
        
     <aside>
     	<h2 class="bannerTitle">TOP FIVE</h2>
@@ -48,20 +58,41 @@
             	
             			<c:choose>
             				<c:when test="${idx.index == 0 }">
-            					<img src="${mainImg[0]}" class="bannerItems active" alt="${best.title }">	
+            					<img src="${mainImg[0]}" class="bannerItems active" alt="${best.title }">
+            					<div class="detailBtn">
+			            			<button type="button" class="btn btn-warning mainBtn" onclick="goDetail(${best.pk})">&nbsp 자세히 &nbsp</button>
+			            			<button type="button" class="btn btn-warning mainBtn">리뷰&댓글</button>
+			            		</div>	
             				</c:when>
             				<c:when test="${idx.index == 1 }">
-            					<img src="${mainImg[1]}" class="bannerItems active" alt="${best.title }">	
+            					<img src="${mainImg[1]}" class="bannerItems active" alt="${best.title }">
+            					<div class="detailBtn">
+			            			<button type="button" class="btn btn-warning mainBtn" onclick="goDetail(${best.pk})">&nbsp 자세히 &nbsp</button>
+			            			<button type="button" class="btn btn-warning mainBtn">리뷰&댓글</button>
+			            		</div>	
             				</c:when>
             				<c:when test="${idx.index == 2 }">
-            					<img src="${mainImg[2]}" class="bannerItems active" alt="${best.title }">	
+            					<img src="${mainImg[2]}" class="bannerItems active" alt="${best.title }">
+            					<div class="detailBtn">
+			            			<button type="button" class="btn btn-warning mainBtn" onclick="goDetail(${best.pk})">&nbsp 자세히 &nbsp</button>
+			            			<button type="button" class="btn btn-warning mainBtn">리뷰&댓글</button>
+			            		</div>	
             				</c:when>
             				<c:when test="${idx.index == 3 }">
-            					<img src="${mainImg[3]}" class="bannerItems active" alt="${best.title }">	
+            					<img src="${mainImg[3]}" class="bannerItems active" alt="${best.title }">
+            					<div class="detailBtn">
+			            			<button type="button" class="btn btn-warning mainBtn" onclick="goDetail(${best.pk})">&nbsp 자세히 &nbsp</button>
+			            			<button type="button" class="btn btn-warning mainBtn">리뷰&댓글</button>
+			            		</div>	
             				</c:when>
             				<c:when test="${idx.index == 4 }">
-            					<img src="${mainImg[4]}" class="bannerItems active" alt="${best.title }">	
+            					<img src="${mainImg[4]}" class="bannerItems active" alt="${best.title }">
+            					<div class="detailBtn">
+			            			<button type="button" class="btn btn-warning mainBtn" onclick="goDetail(${best.pk})">&nbsp 자세히 &nbsp</button>
+			            			<button type="button" class="btn btn-warning mainBtn">리뷰&댓글</button>
+			            		</div>	
             				</c:when>
+            			
             			
             			</c:choose>
             			
@@ -81,10 +112,10 @@
 	            			</tr>
 	            		</table>
 	            		
-	            		<div class="detailBtn">
-	            			<button type="button" class="btn btn-dark">자세히</button>
-	            			<button type="button" class="btn btn-dark">리뷰&댓글</button>
-	            		</div>
+	            		<!-- <div class="detailBtn">
+	            			<button type="button" class="btn btn-warning mainBtn">자세히</button>
+	            			<button type="button" class="btn btn-warning mainBtn">리뷰&댓글</button>
+	            		</div> -->
             		</div>
             	</div>
             </c:forEach>
@@ -103,6 +134,12 @@
             <div class="arrowRight">
                 <i class="fas fa-arrow-right"></i>
             </div>
+            
+            
+            
+            
+            
+            
     </aside>
         
     <h2 class="subTitle">현재 상영 영화</h2>

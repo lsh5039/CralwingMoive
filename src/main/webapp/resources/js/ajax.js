@@ -67,9 +67,9 @@ $(function(){
 									+'</div>';
 						$(".itemBoxTop").append(ajaxData);
 				}
-				$('.descBtn > .btn').style({
+				/*$('.descBtn > .btn').style({
 					margin:'10px'
-				});
+				});*/
 				
 				
 				
@@ -78,6 +78,13 @@ $(function(){
 			},
 			error:function(data){
 				console.log("실패");
+			},
+			
+			complete:function(){
+				
+				$("html").animate({
+					scrollTop:1200+"px"
+				},300)
 			}
 		})
 	})

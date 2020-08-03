@@ -22,6 +22,10 @@ public class UserService {
 		
 	}
 	
+	public UserVO chkId(String id) {
+		return userDao.chkId(id);
+	}
+	
 	public List<UserVO> getList(){
 		List<UserVO> list =  new ArrayList<UserVO>();
 		

@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.print.PrintService;
 import javax.servlet.ServletRequest;
 
 import org.jsoup.Jsoup;
@@ -47,6 +48,29 @@ public class UserMovieCont {
 		
 		return"redirect:/list.do";		
 	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/user/chkid", method = RequestMethod.POST,produces = "application/text; charset=utf8")
+	public String chkId(Model model, @RequestParam (value = "id", required = false, defaultValue = "back")String id) {
+		if(("back").equals(id)) {
+			return "redirect:/join.do";
+		}
+		String result = "사용가능한 아이디 입니다.";
+		JSONObject json = new JSONObject();
+		
+		UserVO vo = userService.chkId(id);
+		if(vo != null) {
+			result="중복된 아이디 입니다.";
+		}
+		
+		json.put("msg2", result);
+		
+		
+		
+		return json.toString();
+	}
+	
+	
 	@RequestMapping(value="list.do", method = RequestMethod.GET)
 	public String goList(Model model, @RequestParam (value="error", required = false)String error) {
 		if(error != null) {
