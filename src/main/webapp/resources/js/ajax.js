@@ -12,6 +12,7 @@ $(function(){
 		var current = $('.pageNum.active').index();
 		if($('.pageNum.active').html() == $('#hid').val()){//최대 페이지시
 			alert('마지막 페이지입니다.')
+			
 			return;
 		}else if(current > 4){
 			var pageMax = $(".pageNum.active").html();
@@ -88,4 +89,8 @@ $(function(){
 			}
 		})
 	})
+
+	
+	
+	
 })

@@ -21,6 +21,7 @@
 			<th>아이디</th>
 			<th>비밀번호</th>
 			<th>이름</th>
+			<th>닉네임</th>
 			<th>성별</th>
 			<th>이메일</th>
 			<th>연락처</th>
@@ -38,6 +39,7 @@
 			<td>${vo.id }</td>
 			<td>${vo.pw }</td>
 			<td>${vo.name }</td>
+			<td>${vo.nick }</td>
 			<td>${gender }</td>
 			<td>${vo.email }</td>
 			<td>${vo.phone }</td>

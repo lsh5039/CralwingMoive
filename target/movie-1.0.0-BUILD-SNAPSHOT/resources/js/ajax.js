@@ -12,6 +12,7 @@ $(function(){
 		var current = $('.pageNum.active').index();
 		if($('.pageNum.active').html() == $('#hid').val()){//최대 페이지시
 			alert('마지막 페이지입니다.')
+			
 			return;
 		}else if(current > 4){
 			var pageMax = $(".pageNum.active").html();
@@ -67,9 +68,9 @@ $(function(){
 									+'</div>';
 						$(".itemBoxTop").append(ajaxData);
 				}
-				$('.descBtn > .btn').style({
+				/*$('.descBtn > .btn').style({
 					margin:'10px'
-				});
+				});*/
 				
 				
 				
@@ -78,7 +79,20 @@ $(function(){
 			},
 			error:function(data){
 				console.log("실패");
+			},
+			
+			complete:function(){
+				
+				$("html").animate({
+					scrollTop:1200+"px"
+				},300)
 			}
 		})
 	})
+	
+	rateDesc
+	
+	
+	
+	
 })

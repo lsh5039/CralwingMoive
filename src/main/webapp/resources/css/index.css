@@ -8,6 +8,9 @@
         .headUser{position: absolute; right: 0; top: 10px;}
         .headUser > a{margin: 10px;}
         .bannerTitle{font-size:48px; text-decoration:bold; text-align:center;margin: 100px 30px;}
+        
+        .menuWrap{width:1200px; margin:20px auto;}
+        
         .movieWrap{width: 1200px; margin: 0 auto;}
         .subTitle{text-align: center; font-size: 36px; margin:100px 0;}
         .bannerWrap{position: relative; width: 1200px; margin: 0 auto; height: 700px;}
@@ -64,8 +67,10 @@
 		tr{border:1px solid #ddd;}
 		
 		
+		#proFrmWrap{width:300px; margin:0 auto;}
 		
-		
+		.proFile{width:230px;}
+		/* #profileFrm{position:absolute; top:-9999px;} */
 		
 		.itemBoxTop{overflow:hidden; margin-bottom:20px;}
 		.itemBoxWrap, .itemBoxDesc{width:1200px; margin:0 auto;}
@@ -91,6 +96,7 @@
 		.pageNum{cursor:pointer; padding:10px; font-weight: lighter; width:50px;}
 		.itemBoxDesc{position:relative;}
 		.descBtn{position:absolute; bottom:5px; right:30px;}
+		.btn-dark:hover{color:yellow;}
 		.descBtn > .btn{margin:10px;}
 		.movePageLeft .fa-arrow-left:before{font-size:16px;}
 		.movePageRight .fa-arrow-right:before{font-size:16px;}

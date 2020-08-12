@@ -6,7 +6,7 @@
  
  	
 <select id="getOneMovie" resultType="com.lsh.movie.crawling.MovieVO">
-	SELECT * FROM movie WHERE pk = ${pk};
+	SELECT * FROM movie WHERE pk = #{pk};
 </select>
  
  

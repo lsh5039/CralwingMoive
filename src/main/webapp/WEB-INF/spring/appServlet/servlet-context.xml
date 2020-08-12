@@ -37,6 +37,10 @@
 		
 	</beans:bean>
 	
+	<beans:bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+	</beans:bean>	<!--10MB  -->
+	
 	<!-- mybatis -->
 	<beans:bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<beans:property name="dataSource" ref="dataSource" /><!--name은  org.mybatis.spring.SqlSessionFactoryBean안에 객체, ref는 위에 내가 만든 db연결 -->

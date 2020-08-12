@@ -5,9 +5,9 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.lsh.movie.crawling.MovieVO;
+import com.lsh.movie.model.ProfileVO;
 import com.lsh.movie.model.UserVO;
 
 @Service
@@ -21,10 +21,17 @@ public class UserService {
 		return userDao.doJoin(param);
 		
 	}
+	public UserVO doLogin(UserVO param) {
+		return userDao.doLogin(param);
+	}
 	
 	public UserVO chkId(String id) {
 		return userDao.chkId(id);
 	}
+	public UserVO chkNick(String nick) {
+		return userDao.chkNick(nick);
+	}
+	
 	
 	public List<UserVO> getList(){
 		List<UserVO> list =  new ArrayList<UserVO>();
@@ -68,4 +75,14 @@ public class UserService {
 	public String getBestLargeImg(int pk){
 		return userDao.getBestLargeImg(pk);
 	}
+	
+	public int upProfile(ProfileVO param) {
+		
+		return userDao.upProfile(param);
+	}
+	
+	public String getProfileImg(int user_pk) {
+		return userDao.getProfileImg(user_pk);
+	}
+	
 }

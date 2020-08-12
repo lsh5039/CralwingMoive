@@ -19,7 +19,7 @@ public class MovieContoller {
 	@Autowired
 	private MovieService movieService;
 	
-
+	
 	  @RequestMapping(value = "/movie/goDetail.do", method = RequestMethod.GET)
 	  public String doComment(Model model, @RequestParam(required = false, defaultValue = "0")int pk ) { 
 		if(pk == 0) {//비정상 경로 return
@@ -61,8 +61,7 @@ public class MovieContoller {
 			largeImg = doc.select("img");
 			strLargeImg = largeImg.attr("src");
 			
-			model.addAttribute("largeImg",strLargeImg);
-			
+			model.addAttribute("largeImg",strLargeImg);			
 		} catch (IOException e) {
 
 			e.printStackTrace();

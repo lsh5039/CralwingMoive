@@ -1,52 +1,60 @@
 @charset "UTF-8";
- .head{width: 100%;  height: 100px; background-color: #fab; margin: 0 auto; position: relative;}
-        .title{position: absolute; left: 50%; top: 50%; transform: translate(-50%,-50%); font-size: 30px;}
+ 		.head{width: 100%;  height: 100px; background-color: #555; margin: 0 auto; position: relative;}
+ 	
+ 		.headUser > *{color:#fff;}
+ 		.headUser > *:hover {color:yellow;}
+ 
+        .title{position: absolute; left: 50%; top: 50%; transform: translate(-50%,-50%); font-size: 40px; color:#fff; font-weight:bold;  font-family: 'Lemonada', cursive; letter-spacing:5px;}
         .headUser{position: absolute; right: 0; top: 10px;}
         .headUser > a{margin: 10px;}
-        .bannerTitle{font-size:48px; text-decoration:bold; text-align:center;margin-top:100px; margin-left:30px;}
+        .bannerTitle{font-size:48px; text-decoration:bold; text-align:center;margin: 100px 30px;}
+        
+        .menuWrap{width:1200px; margin:20px auto;}
+        
         .movieWrap{width: 1200px; margin: 0 auto;}
         .subTitle{text-align: center; font-size: 36px; margin:100px 0;}
-        .bannerWrap{position: relative; width: 1200px; margin: 0 auto;}
+        .bannerWrap{position: relative; width: 1200px; margin: 0 auto; height: 700px;}
         .banner{width: 1200px; height:600px; margin: 0 auto; position: absolute;}
         .bannerItems{position: absolute;}
         /*.bannerItems{position: absolute; width:1200px; height:600px;}  */
         .indicator{width: 25px; height: 25px; border: 1px solid #333; border-radius: 50%; float: left; margin: 10px; cursor: pointer;}
         .indicator.active{background-color: yellow;}
-        .indicatorWrap{position: absolute;overflow: hidden; left: 50%; bottom: 0; transform: translate(-50%,-50%)}
-        .bannerWrap{height: 600px;}
-        .arrowLeft{position: absolute; top: 50%; z-index: 999;left: 5px; transform: translate(50%,-50%);}
-        .arrowRight{position: absolute; top: 50%; z-index: 999; right: 5px; transform: translate(-50%,-50%);}
-        .fa-arrow-left{ color: gray; font-size: 75px; cursor: pointer;}
-        .fa-arrow-right{color:gray; font-size: 75px; cursor: pointer;}
+        .indicatorWrap{position: absolute;overflow: hidden; left: 58%; bottom: 0;}
+        
+        .arrowLeft{position: absolute; top: 80%; left:5%; z-index: 999;}
+        .arrowRight{position: absolute; top: 80%; z-index: 999; right: 5%; }
+        .fa-arrow-left{ color: gray; font-size: 100px; cursor: pointer;}
+        .fa-arrow-right{color:gray; font-size: 100px; cursor: pointer;}
         .bannerItems{display: none;}
-        .bannerItems {width:150px; height:210px;}
+        .bannerItems {width:500px; height:700px;}
         .bannerItems.active{display: inline-block;}
         
         .bestDesc{position: absolute; bottom: 10px; z-index: 999; right: 50%; transform: translate(-50%,-50%);}
         
         
-        .bestWrap{position:absolute; display:none; left:50%; top:30%; transform: translate(-50%,-50%);}
+        .bestWrap{display: none;}
         .bestWrap.active{display:inline-block;}
         
-        .bestItems{position:absolute; font-size:20px;width:340px; top:50%; left:50%;}
-        .bestItemWrap{position: relative; width:1200px; height:600px; overflow:hidden;}
-        .bestItemWrap img{position:absolute; top:50%; left:30%;}
+        .bestItems{position:absolute; font-size:20px;width:340px; top:10%; left:60%;}
+        .bestItemWrap{position: relative; width:1200px; height:700px; overflow:hidden;}
+        .bestItemWrap img{position:absolute;}
         .bestItems h3{float:left; margin:0 20px;}
       	.bestItems > *{text-align:center;}
       	.itemsDes{line-height:120px;}
       	.content{margin-top:40px;}
-        .detailBtn{position:absolute; bottom:15%; right:30%;}
+        .detailBtn{position:absolute; bottom:25%; left:63%;}
+        
         .detailBtn .btn{margin: 0 10px;}
         .mainWrap{width:1000px; margin:0 auto;}
         .mainWrap > table{border-spacing: 25px; border:1px soild #ddd;}
         .movieItems th{margin:0 20px;}
         .line{width:1000px; height:2px; background-color:#ddd; }
         
-        /* .movieItems{border-bottom: 150px solid #fff;} */
+        #logoImg { width:100px; height:100px; }
         
         
-	    .fa-arrow-right:before{font-size:16px;}
-	    .fa-arrow-left:before{font-size:16px;}
+	    .fa-arrow-right:before{font-size:50px;}
+	    .fa-arrow-left:before{font-size:50px;}
 		.movePageWrap{font-size:20px;width:1000px; margin:0 auto;}
 		.movePage{font-size:20px; text-align:center; margin:0 auto;}
 		.movePage span{margin:0 10px;}
@@ -80,11 +88,27 @@
 		.itemBoxDesc  p:nth-child(5){width:398px; position:relative;}
 		
 		.commentBtn{position:absolute; bottom:20px;}
-		.detailBtn{position:absolute; bottom:20px;left:10px;}
+		
 		
 		.movePageLeft, .movePageRight{padding:10px;}
 		.pageNum{cursor:pointer; padding:10px; font-weight: lighter; width:50px;}
 		.itemBoxDesc{position:relative;}
 		.descBtn{position:absolute; bottom:5px; right:30px;}
+		.btn-dark:hover{color:yellow;}
 		.descBtn > .btn{margin:10px;}
+		.movePageLeft .fa-arrow-left:before{font-size:16px;}
+		.movePageRight .fa-arrow-right:before{font-size:16px;}
+		
+		
+		
+		/* 프로필 */
+		.myInfoWrap{width:300px; height:200px; border:1px solid #ddd; position:relative; margin: 10px auto;}
+		.profile{width:100px; height:100px; border:1px solid #ddd; border-radius:20px; overflow:hidden; position:absolute; left:50%; transform:translateX(-50%); top:15px; box-sizing: border-box; }
+		
+		.profile > img{width:120px; height:120px; position:absolute; top:-10px; left:-8px;} 
+		.nickName{position:absolute;left:50%; transform:translate(-50%,-50%); top:68%; font-size:18px;}
+		.infoBox{position:absolute; bottom:5px; width:100%; text-align:center;}
+		
+		
+		
 		

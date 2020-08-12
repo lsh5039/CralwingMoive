@@ -8,10 +8,24 @@
 		INSERT INTO user(pk,id,pw,name, gender,phone, email,nick) VALUES(#{pk},#{id},#{pw},#{name},#{gender},#{phone},#{email},#{nick})
 	</insert>
 	
+	<select id="chkId" resultType="com.lsh.movie.model.UserVO">
+		SELECT * FROM user WHERE id = #{id};
+	
+	</select>
+	<select id="doLogin" resultType="com.lsh.movie.model.UserVO">
+		SELECT * from user WHERE id = #{id};
+	</select>
+	
+	<select id="chkNick" resultType="com.lsh.movie.model.UserVO">
+		SELECT * FROM user WHERE nick = #{nick};
+	</select>
+	
+	
 	<select id="getList" resultType="com.lsh.movie.model.UserVO">
 		SELECT * FROM user 
 	</select>
 	
+		
 	<delete id="doUserDel">
 		DELETE FROM user WHERE pk = ${pk}
 	</delete>
@@ -45,8 +59,13 @@
 		SELECT code FROM movie WHERE pk = #{pk}
 	</select>
 	
-	<select id="chkId" resultType="com.lsh.movie.model.UserVO">
-		SELECT * FROM user WHERE id = #{id};
-	
+	<insert id="upProfile">
+		INSERT INTO profile(user_pk, img) VALUES(#{user_pk}, #{img});
+	</insert>
+	<select id="getProfileImg" resultType="String">
+		SELECT img FROM profile WHERE user_pk=#{user_pk} AND pk = (select MAX(pk) from profile);
 	</select>
+	
+	
+	
 </mapper>

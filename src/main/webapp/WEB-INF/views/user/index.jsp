@@ -20,13 +20,23 @@
 	
 </head>
 <body>
+<%-- <img src="/resources/upload/profile/${lgUser}/${profileImg}">
+<img src="/resources/upload/profile/28/유승호.jpg">
+<img src="/resources/img/박보검.jpg"> --%>
 
  <header>
        <div class="head">
         <h1 class="title">Movie Comment</h1>
         <div class="headUser">
-            <a href="/login.do">로그인</a>
+        <c:if test="${loginUser.name  ne null }">
+        	<a href="/login.do">로그아웃</a>
+            <a href="/join.do">메시지</a>
+        </c:if>
+        <c:if test="${loginUser.name eq null }">
+        	<a href="/user/login.do">로그인</a>
             <a href="/join.do">회원가입</a>
+        </c:if>
+            
         </div>
         <div class="logo">
             <a href="#"><img src="/resources/img/logo.jpg" alt="로고" id="logoImg"></a>
@@ -34,17 +44,38 @@
        </div>
        
        <div class="myInfoWrap">
-            	<div class="profile">
-            		<img src="/resources/img/noProfile.jpg">
-            	</div>
-            	<p class="nickName">lorem</p>
+            	
+            	<c:if test="${lgUser eq null}">
+            		<div class="profile">
+            			<img src="/resources/img/noProfile.jpg">
+            		</div>
+            	</c:if>
+            	<c:if test="${lgUser ne null}">
+            		<div class="profile">
+            			<%-- <img src="/resources/upload/profile/${lgUser}/${profileImg}"> --%>
+            			<img src="/resources/img/noProfile.jpg">
+            		</div>
+            	</c:if>
+            	<p class="nickName">${loginUser.name }</p>
+            	<c:if test="${loginUser.name eq null }">
+            		<p class="nickName">비회원</p>
+            	</c:if>
+            	<c:if test="${loginUser.name ne null }">
+            		<p class="nickName">${loginUser.name }</p>
+            	</c:if>
             	<div class="infoBox">
-            		<button class="btn btn-primary">내 정보</button>
-            		<button class="btn btn-primary">로그아웃</button>
+            		<button class="btn btn-primary">&nbsp 내 정보 &nbsp</button>
+            		<button class="btn btn-primary" id="updPro">프로필변경</button>
             	</div>
        </div> 
+    
  </header>
-       
+ 	<div id="proFrmWrap">
+ 		<form method="post" action="/user/profile.do" id="profileFrm" enctype="multipart/form-data" >
+       		<input type="file" class="proFile" name="profile">
+       		<input type="submit" value="업로드" class="proSub">
+       	</form>
+    </div>   
     <aside>
     	<h2 class="bannerTitle">TOP FIVE</h2>
             <div class="bannerWrap">
@@ -112,10 +143,7 @@
 	            			</tr>
 	            		</table>
 	            		
-	            		<!-- <div class="detailBtn">
-	            			<button type="button" class="btn btn-warning mainBtn">자세히</button>
-	            			<button type="button" class="btn btn-warning mainBtn">리뷰&댓글</button>
-	            		</div> -->
+	            	
             		</div>
             	</div>
             </c:forEach>
@@ -143,7 +171,10 @@
     </aside>
         
     <h2 class="subTitle">현재 상영 영화</h2>
-
+		<div class="menuWrap">
+			<button class="btn btn-primary" onclick="rateDesc()">평점순</button>
+			<button class="btn btn-primary" onclick="voteDesc()">투표순</button>
+		</div>
 	<main>
 	<%-- 	<div class="mainWrap">
 			<table border="1" class="tables">
@@ -168,7 +199,6 @@
 			</table>
 		</div> --%>
 		
-		
 		<div class="itemBoxWrap">
 			<div class="itemBoxTop">
 				<p>제목</p>
@@ -189,7 +219,7 @@
 			<p class="descNum2">${vo.num2 }</p>
 			<div class="descBtn">
 
-				<button type="button" class="btn btn-dark" onclick="goDetail(${vo.pk})">자세히</button>
+				<button type="button" class="btn btn-dark" onclick="goDetail(${vo.pk})">&nbsp 자세히 &nbsp</button>
 	            <button type="button" class="btn btn-dark" onclick="goComment(${vo.pk})">리뷰&댓글</button>
 	           
 			</div>
@@ -220,6 +250,8 @@
     function goComment(pk){
     	location.href="/movie/goComment.do?pk="+pk;
     }
+    
+    
     </script>
 
 </body>

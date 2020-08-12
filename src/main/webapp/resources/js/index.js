@@ -1,4 +1,23 @@
 $(function(){
+	
+	$(window).scroll(function () { 
+		var scrollValue = $(document).scrollTop();
+		if(scrollValue>1200){
+			$(".head").css({
+				position:'fixed',
+				top:'0px',
+				zIndex:"999"
+			})
+		} else{
+			$(".head").css({
+				position:''
+			})
+		}
+	});
+
+	
+	
+	
 	$(".bestWrap").removeClass("active")
 	$(".bestWrap").eq(0).addClass("active");
 	
@@ -45,9 +64,9 @@ $(function(){
     	$('.pageNum').eq(--idx).addClass('active');
     })
     
-    
- 
-    
+    $("#updPro").click(function(){
+    	$(".proFile").trigger("click");
+    })
     
 	
     

@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.lsh.movie.crawling.MovieVO;
+import com.lsh.movie.model.ProfileVO;
 import com.lsh.movie.model.UserVO;
 
 @Repository
@@ -106,6 +107,35 @@ public class UserDAOImple implements UserDao{
 	public UserVO chkId(String id) {
 		
 		return sqlSession.selectOne(NAME_SPACE+".chkId");
+	}
+
+
+
+	@Override
+	public UserVO chkNick(String nick) {
+		return sqlSession.selectOne(NAME_SPACE+".chkNick");
+	}
+
+
+
+	@Override
+	public UserVO doLogin(UserVO param) {
+		return sqlSession.selectOne(NAME_SPACE+".doLogin");
+	}
+
+
+
+	@Override
+	public int upProfile(ProfileVO param) {
+		
+		return sqlSession.insert(NAME_SPACE+".upProfile");
+	}
+
+
+
+	@Override
+	public String getProfileImg(int user_pk) {
+		return sqlSession.selectOne(NAME_SPACE+".getProfileImg");
 	}
 
 
